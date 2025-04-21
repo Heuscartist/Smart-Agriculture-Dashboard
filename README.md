@@ -171,14 +171,6 @@ Ensure both boards are connected to Wi-Fi and flashed with respective `.ino` fil
 
 ---
 
-## 📸 Screenshots
-
-| Dashboard View                                            |
-| --------------------------------------------------------- |
-| ![[WhatsApp Image 2025-04-21 at 15.25.48_14b528e6 1.jpg]] |
-
----
-
 ## 🤝 Acknowledgments
 
 Special thanks to the open-source community and resources from [PyTorch](https://pytorch.org/), [InfluxData](https://www.influxdata.com/), and [Streamlit](https://streamlit.io/).
