@@ -6,8 +6,8 @@ from datetime import datetime
 esp32_ip = "http://127.0.0.1:5000/"
 
 bucket = "esp32_data"
-token = "1h0JhallhRUnV9uJXQuGS7anVF-fBtmLJEV99F0wDEDtRe0gTGc0qAqaHv360czgg60w7pod4h2DiJ7PaXv-oA=="
-org = "LUMS"
+token = "YOUR_TOKEN"
+org = "YOUR_ORG"
 url = "http://localhost:8086"
 
 client = InfluxDBClient(url=url, token=token, org=org)
