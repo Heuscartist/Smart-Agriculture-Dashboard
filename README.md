@@ -135,7 +135,7 @@ Create a **bucket** named 'esp32_data' and make sure to note your **token** and 
 ### 3. Run Sensor Simulator (if you dont have hardware)
 
 ``` bash
-python sensor_simulator.py
+python sensor_simulation.py
 ```
 
 ### 3. Start InfluxDB Writer
