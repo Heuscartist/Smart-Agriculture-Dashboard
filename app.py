@@ -44,8 +44,8 @@ model = load_model()
 st.title("🌡️ ESP32 Real-Time Sensor Dashboard")
 
 # InfluxDB setup
-token = "1h0JhallhRUnV9uJXQuGS7anVF-fBtmLJEV99F0wDEDtRe0gTGc0qAqaHv360czgg60w7pod4h2DiJ7PaXv-oA=="
-org = "LUMS"
+token = "YOUR_TOKEN"
+org = "YOUR_ORG"
 url = "http://localhost:8086"
 bucket = "esp32_data"
 
