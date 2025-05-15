@@ -31,21 +31,20 @@ st_autorefresh(interval=10 * 1000, key="refresh")
 # Load model once
 @st.cache_resource
 def load_model():
-    device = torch.device("cpu")  # Use CPU for inference in Streamlit
-    model = models.resnet18(pretrained=False)  # False since you're loading your own weights
-    model.fc = nn.Linear(model.fc.in_features, 2)  # Binary classification
+    device = torch.device("cpu")
+    model = models.resnet18(pretrained=False)
+    model.fc = nn.Linear(model.fc.in_features, 2)
     model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
     model.eval()
     return model
-
 
 model = load_model()
 
 st.title("🌡️ ESP32 Real-Time Sensor Dashboard")
 
 # InfluxDB setup
-token = "YOUR_TOKEN"
-org = "YOUR_ORG"
+token = "1h0JhallhRUnV9uJXQuGS7anVF-fBtmLJEV99F0wDEDtRe0gTGc0qAqaHv360czgg60w7pod4h2DiJ7PaXv-oA=="
+org = "LUMS"
 url = "http://localhost:8086"
 bucket = "esp32_data"
 
@@ -79,6 +78,20 @@ with col2:
 
         # Get the latest row
         latest_row = result.iloc[-1]
+
+        # --- Data Validation Checks ---
+        alerts = []
+
+        if not (0 <= latest_row["temperature"] <= 50):
+            alerts.append(f"🌡️ Temperature out of range: {latest_row['temperature']:.2f} °C")
+        if not (0 <= latest_row["humidity"] <= 100):
+            alerts.append(f"💧 Humidity out of range: {latest_row['humidity']:.2f} %")
+        if not (0 <= latest_row["soil_moisture"] <= 100):
+            alerts.append(f"🌿 Soil Moisture out of range: {latest_row['soil_moisture']:.2f}")
+
+        if alerts:
+            for alert in alerts:
+                st.error(f"⚠️ {alert}")
 
         def moisture_status(value):
             if value < 30:
@@ -116,6 +129,7 @@ with col1:
         """,
         unsafe_allow_html=True,
     )
+
     # Fetch the latest image
     fetch_and_overwrite_image(filename="latest.jpg")
 
@@ -127,7 +141,7 @@ with col1:
         st.image(image, caption="Latest Plant Image", width=300)
 
         # Preprocess image
-        input_tensor = transform(image).unsqueeze(0)  # Add batch dimension
+        input_tensor = transform(image).unsqueeze(0)
 
         # Make prediction
         with torch.no_grad():
@@ -144,7 +158,7 @@ with col1:
     except Exception as e:
         st.error(f"Failed to display or predict: {e}")
 
-# 30-second Rolling Mean with Static Min/Max in a single row
+# Rolling mean + min/max
 st.subheader("📉 30-second Rolling Mean with Static Min/Max")
 
 if not result.empty:
