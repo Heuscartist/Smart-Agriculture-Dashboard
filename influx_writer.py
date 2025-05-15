@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 # InfluxDB setup
 bucket = "esp32_data"
-token = "1h0JhallhRUnV9uJXQuGS7anVF-fBtmLJEV99F0wDEDtRe0gTGc0qAqaHv360czgg60w7pod4h2DiJ7PaXv-oA=="
-org = "LUMS"
+token = "Your Token Here"
+org = "Your ORG Here"
 url = "http://localhost:8086"
 
 logger.info("Initializing InfluxDB client connection")
