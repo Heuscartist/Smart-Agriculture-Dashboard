@@ -61,8 +61,8 @@ except Exception as e:
 st.title("🌡️ ESP32 Real-Time Sensor Dashboard")
 
 # InfluxDB setup
-token = "1h0JhallhRUnV9uJXQuGS7anVF-fBtmLJEV99F0wDEDtRe0gTGc0qAqaHv360czgg60w7pod4h2DiJ7PaXv-oA=="
-org = "LUMS"
+token = "YOUR TOKEN HERE"
+org = "YOUR ORG HERE"
 url = "http://localhost:8086"
 bucket = "esp32_data"
 
