@@ -44,10 +44,11 @@ This project is a real-time IoT data engineering pipeline designed to monitor an
 
 ```bash
 .
-├── app.py                     # Streamlit Dashboard
+├── app.py                    # Streamlit Dashboard
 ├── fetch_image.py            # ESP32-CAM image capture fetcher
 ├── sensor_simulator.py       # Flask server to simulate ESP32 data
 ├── influx_writer.py          # Python script to poll ESP32 and write to InfluxDB
+├── logger.py                 # Script for logging information
 ├── model/
 │   └── plant_classifier.pth  # Trained PyTorch model
 ├── data/
